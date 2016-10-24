@@ -8,7 +8,7 @@ module.exports = function(app) {
             //if there is an error retreiving, send the error
             if(err)
                 res.send(err)
-            
+
             res.json(todos);
         })
     })
@@ -21,12 +21,12 @@ module.exports = function(app) {
         }, function(err, todo) {
             if (err)
                 res.send(err);
-            
+
             //get and return all the todos after you create another
             Todo.find(function(err, todos) {
                 if (err)
                     res.send(err);
-                
+
                 res.json(todos);
             });
         });
@@ -38,18 +38,18 @@ module.exports = function(app) {
         }, function(err, todo) {
             if(err)
                 res.send(err);
-            
+
             //get and return all todos after you delete one
             Todo.find(function(err, todos) {
                 if (err)
                     res.send(err);
-                
+
                 res.json(todos);
             });
         });
     });
 
     app.get('*', function(req, res) {
-        res.sendfile('./public/index.html'); //load the single view file
+        res.sendFile('public/index.html', { root: __dirname + '/../' }); //load the single view file
     });
 };
